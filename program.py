@@ -15,7 +15,7 @@ class Map_Find(QMainWindow):
 
     def initUI(self):
         self.setWindowTitle('Show Map')
-        json_poisk_roma()
+        json_poisk_roma(delta=self.spn)
         self.pixmap = QPixmap('map.png')
         self.label.setPixmap(self.pixmap)
 
