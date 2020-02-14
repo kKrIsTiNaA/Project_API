@@ -24,7 +24,8 @@ def json_poisk_roma():
     map_params = {
         "ll": ",".join([toponym_longitude, toponym_lattitude]),
         "spn": ",".join([delta, delta]),
-        "l": "map"
+        "l": "map",
+        "size": "450,450"
     }
 
     map_api_server = "http://static-maps.yandex.ru/1.x/"
