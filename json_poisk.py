@@ -14,7 +14,7 @@ def json_poisk_roma():
         "format": "json"}
     response = requests.get(geocoder_api_server, params=geocoder_params)
     if not response:
-        pass
+        return False
     json_response = response.json()
     toponym = json_response["response"]["GeoObjectCollection"][
         "featureMember"][0]["GeoObject"]
@@ -27,10 +27,8 @@ def json_poisk_roma():
         "l": "map",
         "size": "450,450"
     }
-
     map_api_server = "http://static-maps.yandex.ru/1.x/"
     response = requests.get(map_api_server, params=map_params)
-    Image.open(BytesIO(response.content)).show()
-    return BytesIO(response.content)
-
-json_poisk_roma()
+    im = open('map.png', 'wb')
+    im.write(response.content)
+    return True
