@@ -4,6 +4,7 @@ from PIL import Image
 
 
 def json_poisk_roma(delta="0.005"):
+    delta = str(delta)
     # python search.py Москва, ул. Ак. Королева, 12
     toponym_to_find = 'Москва, ул. Ак. Королева, 12'
     geocoder_api_server = "http://geocode-maps.yandex.ru/1.x/"
@@ -30,5 +31,6 @@ def json_poisk_roma(delta="0.005"):
     im = open('map.png', 'wb')
     im.write(response.content)
     return True
+
 
 json_poisk_roma()
