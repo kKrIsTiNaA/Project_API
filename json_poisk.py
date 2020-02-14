@@ -32,4 +32,5 @@ def json_poisk_roma(delta="0.005"):
     im.write(response.content)
     return True
 
+
 json_poisk_roma()
