@@ -32,3 +32,5 @@ def json_poisk_roma():
     im = open('map.png', 'wb')
     im.write(response.content)
     return True
+
+json_poisk_roma()
