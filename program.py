@@ -11,13 +11,36 @@ class Map_Find(QMainWindow):
         super().__init__()
         uic.loadUi('interface.ui', self)
         self.spn = 0.005
+        self.coord = [0, 0]
         self.initUI()
 
     def initUI(self):
         self.setWindowTitle('Show Map')
-        json_poisk_roma(self.spn)
+        json_poisk_roma(delta=self.spn)
         self.pixmap = QPixmap('map.png')
         self.label.setPixmap(self.pixmap)
+
+    def keyPressEvent(self, event):
+        if event.key() == QtCore.Qt.Key_PageUp:
+            self.spn += 0.01
+        if event.key() == QtCore.Qt.Key_PageDown:
+            self.spn -= 0.01
+        if event.key() == QtCore.Qt.Key_Up:
+            self.coord[1] += 0.002
+        if event.key() == QtCore.Qt.Key_Down:
+            self.coord[1] -= 0.002
+        if event.key() == QtCore.Qt.Key_Right:
+            self.coord[0] += 0.002
+        if event.key() == QtCore.Qt.Key_Left:
+            self.coord[0] -= 0.002
+        if self.spn >= 0.5:
+            self.spn = 0.5
+        if self.spn <= 0.005:
+            self.spn = 0.005
+        json_poisk_roma(self.spn, self.coord)
+        self.pixmap = QPixmap('map.png')
+        self.label.setPixmap(self.pixmap)
+        self.update()
 
 
 app = QApplication(sys.argv)
