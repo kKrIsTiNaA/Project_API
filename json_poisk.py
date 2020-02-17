@@ -3,7 +3,7 @@ import requests
 from PIL import Image
 
 
-def json_poisk_roma(delta="0.005", dvigat=[0, 0]):
+def json_poisk_roma(delta="0.005", dvigat=[0, 0], type="map"):
     delta = str(delta)
     # работаю один, т.к. мне хватило 2ух часов, потраченных с этими людьми!
     toponym_to_find = 'Москва, ул. Ак. Королева, 12'
@@ -21,9 +21,10 @@ def json_poisk_roma(delta="0.005", dvigat=[0, 0]):
     toponym_coodrinates = toponym["Point"]["pos"]
     toponym_longitude, toponym_lattitude = toponym_coodrinates.split(" ")
     map_params = {
-        "ll": ",".join([str(float(toponym_longitude) + dvigat[0]), str(float(toponym_lattitude) + dvigat[1])]),
+        "ll": ",".join([str(float(toponym_longitude) + dvigat[0]),
+                        str(float(toponym_lattitude) + dvigat[1])]),
         "spn": ",".join([delta, delta]),
-        "l": "map",
+        "l": type,
         "size": "450,450"
     }
     map_api_server = "http://static-maps.yandex.ru/1.x/"
