@@ -12,6 +12,7 @@ class Map_Find(QMainWindow):
         uic.loadUi('interface.ui', self)
         self.spn = 0.005
         self.coord = [0, 0]
+        self.metka = False
         self.initUI()
 
     def initUI(self):
@@ -22,6 +23,8 @@ class Map_Find(QMainWindow):
         self.label.setPixmap(self.pixmap)
         self.label.setFocus()
         self.typeBTN.clicked.connect(self.change_type)
+        self.findBTN.clicked.connect(self.poisk)
+        self.zapros = 'Москва, ул. Ак. Королева, 12'
 
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_PageUp:
@@ -36,22 +39,35 @@ class Map_Find(QMainWindow):
             self.coord[0] += 0.002
         if event.key() == QtCore.Qt.Key_Left:
             self.coord[0] -= 0.002
-        if self.spn >= 0.5:
-            self.spn = 0.5
+        if self.spn >= 1:
+            self.spn = 1
         if self.spn <= 0.005:
             self.spn = 0.005
-        json_poisk_roma(self.spn, self.coord, self.typeBTN.text())
+        json_poisk_roma(self.spn, self.coord, self.typeBTN.text(), self.zapros, self.metka)
         self.pixmap = QPixmap('map.png')
         self.label.setPixmap(self.pixmap)
         self.update()
 
     def change_type(self):
         self.typeBTN.setText(self.type[(self.type.index(self.typeBTN.text()) + 1) % 3])
-        json_poisk_roma(self.spn, self.coord, self.typeBTN.text())
+        json_poisk_roma(self.spn, self.coord, self.typeBTN.text(), self.zapros, self.metka)
         self.pixmap = QPixmap('map.png')
         self.label.setPixmap(self.pixmap)
         self.label.setFocus()
         self.update()
+
+    def poisk(self):
+        try:
+            self.metka = True
+            json_poisk_roma(self.spn, self.coord,
+                            self.typeBTN.text(), self.poiskLine.text(), self.metka)
+            self.zapros = self.poiskLine.text()
+            self.pixmap = QPixmap('map.png')
+            self.label.setPixmap(self.pixmap)
+            self.label.setFocus()
+            self.update()
+        except IndexError:
+            pass
 
 
 app = QApplication(sys.argv)

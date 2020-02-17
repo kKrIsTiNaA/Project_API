@@ -3,10 +3,10 @@ import requests
 from PIL import Image
 
 
-def json_poisk_roma(delta="0.005", dvigat=[0, 0], type="sat"):
+def json_poisk_roma(delta="0.005", dvigat=[0, 0], type="sat",
+                    toponym_to_find='Москва, ул. Ак. Королева, 12', metka=False):
     delta = str(delta)
     # работаю один, т.к. мне хватило 2ух часов, потраченных с этими людьми!
-    toponym_to_find = 'Москва, ул. Ак. Королева, 12'
     geocoder_api_server = "http://geocode-maps.yandex.ru/1.x/"
     geocoder_params = {
         "apikey": "40d1649f-0493-4b70-98ba-98533de7710b",
@@ -27,6 +27,9 @@ def json_poisk_roma(delta="0.005", dvigat=[0, 0], type="sat"):
         "l": type,
         "size": "450,450"
     }
+    if metka:
+        map_params['pt'] = ",".join([str(float(toponym_longitude)),
+                                     str(float(toponym_lattitude))])
     map_api_server = "http://static-maps.yandex.ru/1.x/"
     response = requests.get(map_api_server, params=map_params)
     im = open('map.png', 'wb')
