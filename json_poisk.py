@@ -3,7 +3,7 @@ import requests
 from PIL import Image
 
 
-def json_poisk_roma(delta="0.005", dvigat=[0, 0], type="map"):
+def json_poisk_roma(delta="0.005", dvigat=[0, 0], type="sat"):
     delta = str(delta)
     # работаю один, т.к. мне хватило 2ух часов, потраченных с этими людьми!
     toponym_to_find = 'Москва, ул. Ак. Королева, 12'
@@ -31,6 +31,7 @@ def json_poisk_roma(delta="0.005", dvigat=[0, 0], type="map"):
     response = requests.get(map_api_server, params=map_params)
     im = open('map.png', 'wb')
     im.write(response.content)
+    im.close()
     return True
 
 

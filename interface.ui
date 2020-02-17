@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>631</width>
+    <width>719</width>
     <height>585</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>40</y>
+      <y>70</y>
       <width>531</width>
       <height>471</height>
      </rect>
@@ -45,13 +45,39 @@
      <string>Изображение</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="typeBTN">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>10</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>map</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="findBTN">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>10</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Искать</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>631</width>
+     <width>719</width>
      <height>21</height>
     </rect>
    </property>
