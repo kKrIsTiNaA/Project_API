@@ -26,7 +26,6 @@ class Map_Find(QMainWindow):
         self.label.setPixmap(self.pixmap)
         self.label.setFocus()
         self.typeBTN.clicked.connect(self.change_type)
-        self.findBTN.clicked.connect(self.poisk)
         self.zapros = 'Москва, ул. Ак. Королева, 12'
 
     def keyPressEvent(self, event):
@@ -64,22 +63,6 @@ class Map_Find(QMainWindow):
         self.label.setPixmap(self.pixmap)
         self.label.setFocus()
         self.update()
-
-    def poisk(self):
-        try:
-            self.metka = True
-            json_poisk_roma(self.spn, self.coord,
-                            self.typeBTN.text(), self.poiskLine.text(), self.metka)
-            self.zapros = self.poiskLine.text()
-            if self.typeBTN.text() == 'map':
-                self.pixmap = QPixmap('map.png')
-            else:
-                self.pixmap = QPixmap('map.jpg')
-            self.label.setPixmap(self.pixmap)
-            self.label.setFocus()
-            self.update()
-        except IndexError:
-            pass
 
 
 app = QApplication(sys.argv)

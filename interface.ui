@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -56,29 +56,6 @@
     </property>
     <property name="text">
      <string>map</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="findBTN">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>10</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Искать</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="poiskLine">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>10</y>
-      <width>301</width>
-      <height>21</height>
-     </rect>
     </property>
    </widget>
   </widget>
