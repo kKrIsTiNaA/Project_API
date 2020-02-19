@@ -19,7 +19,10 @@ class Map_Find(QMainWindow):
         self.setWindowTitle('Show Map')
         self.type = ['map', 'sat', 'sat,skl']
         json_poisk_roma(self.spn, self.coord, 'map')
-        self.pixmap = QPixmap('map.png')
+        if self.typeBTN.text() == 'map':
+            self.pixmap = QPixmap('map.png')
+        else:
+            self.pixmap = QPixmap('map.jpg')
         self.label.setPixmap(self.pixmap)
         self.label.setFocus()
         self.typeBTN.clicked.connect(self.change_type)
@@ -44,14 +47,20 @@ class Map_Find(QMainWindow):
         if self.spn <= 0.005:
             self.spn = 0.005
         json_poisk_roma(self.spn, self.coord, self.typeBTN.text(), self.zapros, self.metka)
-        self.pixmap = QPixmap('map.png')
+        if self.typeBTN.text() == 'map':
+            self.pixmap = QPixmap('map.png')
+        else:
+            self.pixmap = QPixmap('map.jpg')
         self.label.setPixmap(self.pixmap)
         self.update()
 
     def change_type(self):
         self.typeBTN.setText(self.type[(self.type.index(self.typeBTN.text()) + 1) % 3])
         json_poisk_roma(self.spn, self.coord, self.typeBTN.text(), self.zapros, self.metka)
-        self.pixmap = QPixmap('map.png')
+        if self.typeBTN.text() == 'map':
+            self.pixmap = QPixmap('map.png')
+        else:
+            self.pixmap = QPixmap('map.jpg')
         self.label.setPixmap(self.pixmap)
         self.label.setFocus()
         self.update()
@@ -62,7 +71,10 @@ class Map_Find(QMainWindow):
             json_poisk_roma(self.spn, self.coord,
                             self.typeBTN.text(), self.poiskLine.text(), self.metka)
             self.zapros = self.poiskLine.text()
-            self.pixmap = QPixmap('map.png')
+            if self.typeBTN.text() == 'map':
+                self.pixmap = QPixmap('map.png')
+            else:
+                self.pixmap = QPixmap('map.jpg')
             self.label.setPixmap(self.pixmap)
             self.label.setFocus()
             self.update()
