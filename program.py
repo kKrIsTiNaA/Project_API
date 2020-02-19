@@ -19,13 +19,9 @@ class Map_Find(QMainWindow):
         self.setWindowTitle('Show Map')
         self.type = ['map', 'sat', 'sat,skl']
         json_poisk_roma(self.spn, self.coord, 'map')
-        if self.typeBTN.text() == 'map':
-            self.pixmap = QPixmap('map.png')
-        else:
-            self.pixmap = QPixmap('map.jpg')
+        self.pixmap = QPixmap('map.png')
         self.label.setPixmap(self.pixmap)
         self.label.setFocus()
-        self.typeBTN.clicked.connect(self.change_type)
         self.zapros = 'Москва, ул. Ак. Королева, 12'
 
     def keyPressEvent(self, event):
@@ -45,23 +41,17 @@ class Map_Find(QMainWindow):
             self.spn = 1
         if self.spn <= 0.005:
             self.spn = 0.005
-        json_poisk_roma(self.spn, self.coord, self.typeBTN.text(), self.zapros, self.metka)
-        if self.typeBTN.text() == 'map':
-            self.pixmap = QPixmap('map.png')
-        else:
-            self.pixmap = QPixmap('map.jpg')
+        if self.coord[0] > 0.02:
+            self.coord[0] = 0.02
+        if self.coord[0] < -0.02:
+            self.coord[0] = -0.02
+        if self.coord[1] > 0.02:
+            self.coord[1] = 0.02
+        if self.coord[1] < -0.02:
+            self.coord[1] = -0.02
+        json_poisk_roma(self.spn, self.coord, 'map', self.zapros, self.metka)
+        self.pixmap = QPixmap('map.png')
         self.label.setPixmap(self.pixmap)
-        self.update()
-
-    def change_type(self):
-        self.typeBTN.setText(self.type[(self.type.index(self.typeBTN.text()) + 1) % 3])
-        json_poisk_roma(self.spn, self.coord, self.typeBTN.text(), self.zapros, self.metka)
-        if self.typeBTN.text() == 'map':
-            self.pixmap = QPixmap('map.png')
-        else:
-            self.pixmap = QPixmap('map.jpg')
-        self.label.setPixmap(self.pixmap)
-        self.label.setFocus()
         self.update()
 
 
